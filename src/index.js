@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import data from './questions.csv';
+// import { csv } from 'd3';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Components 
+import FetchClass from './components/FetchClass';
+import Fetch from './components/Fetch';
+import Button from './components/Button';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// import App from './App';
+const App = () => {
+    const [task, setTask] = useState(
+        +window.localStorage.getItem('i') <= 0 ? 1 : +window.localStorage.getItem('i')
+        );
+    
+    return <div>
+        <Fetch taskNum={task} />
+        <FetchClass taskNum={task} />
+        <Button task={task} setTask={setTask} way="decrease" name="Back"/>  
+        <Button task={task} setTask={setTask} way="increase" name="Next"/>    
+    </div>
+}
+
+ReactDOM.render(<App/>, document.querySelector('#root'));
