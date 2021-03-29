@@ -15,25 +15,10 @@ class FetchClass extends Component {
 
     componentDidMount() {
 
-        // The callback can be the reason of all this shit!!!
-
         d3.text(data).then(item => {
-            // console.log(d3.dsvFormat(';').parseRows(item))
-            const array = [];
             const x = d3.dsvFormat(';').parseRows(item);
             
             this.setState({ questions: x[this.props.taskNum - 1]});
-            
-            // x.forEach((i) => {
-            //     array.push(i[1]);
-            //     this.setState({ questions: array});
-            // });
-            
-            // x.forEach((i) => {
-            //     this.setState({ questions: i});
-            // });
-            
-            // console.log(this.state.questions);
             
         });
     };
